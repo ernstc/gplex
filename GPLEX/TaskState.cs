@@ -40,6 +40,32 @@ namespace QUT.Gplex.Automaton
         const string bufferCodeName = "GplexBuffers.cs";
 
         readonly string version;
+
+        private string _versionWithPlatform;
+
+        internal string VersionWithPlatform
+        {
+            get
+            {
+                if (_versionWithPlatform == null)
+                {
+#if NET20_OR_GREATER
+                    _versionWithPlatform = version + " [.Net Framework]";
+#elif NETCOREAPP2_2
+                    _versionWithPlatform = version + " [.Net Core 2.2]";
+#elif NETCOREAPP3_1
+                    _versionWithPlatform = version + " [.Net Core 3.1]";
+#elif NET5_0
+                    _versionWithPlatform = version + " [.Net 5]";
+#elif NET6_0
+                    _versionWithPlatform = version + " [.Net 6]";
+#endif
+                }
+                return _versionWithPlatform;
+            }
+        }
+
+
         const int notSet = -1;
         const int asciiCardinality = 256;
         const int unicodeCardinality = 0x110000;

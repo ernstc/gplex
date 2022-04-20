@@ -40,7 +40,7 @@ namespace QUT.Gplex
                     fileArg = true;
 			}
             if (task.Version)
-                task.Msg.WriteLine("GPLEX version: " + task.VerString);
+                task.Msg.WriteLine("GPLEX version: " + task.VersionWithPlatform);
             if (opResult == OptionState.needCodepageHelp)
                 CodepageHelp(fileArg);
             if (opResult == OptionState.errors)
@@ -67,7 +67,7 @@ namespace QUT.Gplex
                 if (task.ErrNum + task.WrnNum > 0)
                     task.ErrorReport();
                 else if (task.Verbose)
-                    task.Msg.WriteLine("GPLEX <" + task.FileName + "> Completed successfully");
+                    task.Msg.WriteLine("GPLEX {0} <{1}> Completed successfully", task.VersionWithPlatform, task.FileName);
                 task.Dispose();
             }
             if (task.ErrNum > 0)

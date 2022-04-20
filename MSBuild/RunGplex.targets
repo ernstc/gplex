@@ -1,42 +1,57 @@
 <Project>
-  <PropertyGroup>
-    <_GplexTool>dotnet "$(MSBuildThisFileDirectory)/netcoreapp2.0/Gplex.dll"</_GplexTool>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net20' Or $(TargetFrameworks.Contains('net20'))">
+		<_GplexTool>"$(MSBuildThisFileDirectory)net20/Gplex.exe"</_GplexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp2.2' Or $(TargetFrameworks.Contains('netcoreapp2.2'))">
+		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)netcoreapp2.2/Gplex.dll"</_GplexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1' Or $(TargetFrameworks.Contains('netcoreapp3.1'))">
+		<_GplexTool>"$(MSBuildThisFileDirectory)netcoreapp3.1/Gplex.exe"</_GplexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net5.0' Or $(TargetFrameworks.Contains('net5.0'))">
+		<_GplexTool>"$(MSBuildThisFileDirectory)net5.0/Gplex.exe"</_GplexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net6.0' Or $(TargetFrameworks.Contains('net6.0'))">
+		<_GplexTool>"$(MSBuildThisFileDirectory)net6.0/Gplex.exe"</_GplexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(_GplexTool)' == ''">
+		<_GplexTool>"$(MSBuildThisFileDirectory)net6.0/Gplex.exe"</_GplexTool>
+	</PropertyGroup>
 
-  <!-- Defaults for GplexFile items -->
-  <ItemDefinitionGroup>
-    <GplexFile>
-      <OutputFile>%(Identity).cs</OutputFile>
-      <Arguments></Arguments>
-    </GplexFile>
-  </ItemDefinitionGroup>
-  
-  <!-- Run once from outer build in cross targeting projects. Imported and called from crossTargetingBuild/*.targets -->
-  <Target Name="GplexToolCrossTarget" BeforeTargets="DispatchToInnerBuilds" Condition="'$(IsCrossTargetingBuild)' != ''" Inputs="@(GplexFile)" Outputs="@(GplexFile->'%(OutputFile)')">
-    <CallTarget Targets="GplexTool" />
-  </Target>
+	<!-- Defaults for LexFile items -->
+	<ItemDefinitionGroup>
+		<LexFile>
+			<OutputFile>%(Identity).cs</OutputFile>
+			<Arguments></Arguments>
+		</LexFile>
+	</ItemDefinitionGroup>
 
-  <!-- Run once in single targeting projects. Imported and called from build/[framework]/*.targets -->
-  <!-- Don't run in VS design time builds. Otherwise VS compiles eagerly and discards the output -->
-  <Target Name="GplexToolSingleTarget" BeforeTargets="CoreCompile" Condition="'$(DesignTimeBuild)' == '' AND '$(IsCrossTargetingBuild)' == ''" Inputs="@(GplexFile)" Outputs="@(GplexFile->'%(OutputFile)')">
-    <CallTarget Targets="GplexTool" />
-  </Target>
-  
-  <Target Name="GplexTool" >
-    <Exec Command="$(_GplexTool) %(GplexFile.Arguments) /out:&quot;./%(GplexFile.OutputFile)&quot; %(GplexFile.Identity)" />
+	<!-- Run once from outer build in cross targeting projects. Imported and called from crossTargetingBuild/*.targets -->
+	<Target Name="YaccLexToolsGplexCrossTarget" BeforeTargets="DispatchToInnerBuilds" Condition="'$(IsCrossTargetingBuild)' != ''" Inputs="@(LexFile)" Outputs="@(LexFile->'%(OutputFile)')">
+		<CallTarget Targets="YaccLexToolsGplex" />
+	</Target>
 
-    <!-- Ensure the generated files are included in the build. Otherwise first build fails because the source files are collected already -->
-    <ItemGroup>
-      <Compile Remove="@(GplexFile->'%(OutputFile)')" />
-      <Compile Remove="GplexBuffers.cs" />
-      <Compile Include="@(GplexFile->'%(OutputFile)')" />
-      <Compile Include="GplexBuffers.cs" />
-    </ItemGroup>
-  </Target>
+	<!-- Run once in single targeting projects. Imported and called from build/[framework]/*.targets -->
+	<!-- Don't run in VS design time builds. Otherwise VS compiles eagerly and discards the output -->
+	<Target Name="YaccLexToolsGplexSingleTarget" BeforeTargets="CoreCompile" Condition="'$(DesignTimeBuild)' == '' AND '$(IsCrossTargetingBuild)' == ''" Inputs="@(LexFile)" Outputs="@(LexFile->'%(OutputFile)')">
+		<CallTarget Targets="YaccLexToolsGplex" />
+	</Target>
 
-  <!-- Make it work with VS' FastUpToDateCheck -->
-  <ItemGroup>
-    <UpToDateCheckInput Include="@(GplexFile)" />
-  </ItemGroup>
+	<Target Name="YaccLexToolsGplex" >
+		<Exec Command="$(_GplexTool) %(LexFile.Arguments) /out:&quot;./%(LexFile.OutputFile)&quot; %(LexFile.Identity)" />
+
+		<!-- Ensure the generated files are included in the build. Otherwise first build fails because the source files are collected already -->
+		<ItemGroup>
+			<Compile Remove="@(LexFile->'%(OutputFile)')" />
+			<Compile Remove="GplexBuffers.cs" />
+			<Compile Include="@(LexFile->'%(OutputFile)')" />
+			<Compile Include="GplexBuffers.cs" />
+		</ItemGroup>
+	</Target>
+
+	<!-- Make it work with VS' FastUpToDateCheck -->
+	<ItemGroup>
+		<UpToDateCheckInput Include="@(LexFile)" />
+	</ItemGroup>
 
 </Project>
