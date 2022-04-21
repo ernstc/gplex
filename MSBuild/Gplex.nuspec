@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
 	<metadata>
 		<id>YaccLexTools.Gplex</id>
-		<version>1.2.2</version>
+		<version>1.2.2.1-preview.2</version>
 		<title>Gplex Tool</title>
 		<authors>Ernesto Cianciotta</authors>
 		<owners>ernstc</owners>
@@ -11,7 +11,7 @@
 		<license type="file">LICENSE.md</license>
 		<readme>docs\README.md</readme>
 		<icon>images\Icon.png</icon>
-		<tags>gplex gppg yacc lex tools parser syntax ast compile language grammar LARL c#</tags>
+		<tags>gplex gppg yacc lex tools parser syntax ast compile language grammar LALR c#</tags>
 		<repository type="git" url="https://github.com/ernstc/gplex" />
 		<dependencies>
 			<group targetFramework=".NETFramework2.0" />
