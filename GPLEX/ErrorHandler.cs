@@ -256,9 +256,7 @@ namespace QUT.Gplex.Parser
                                                            + name + ">");
             ListDivider(sWrtr);
             sWrtr.WriteLine("//  Version:  " + version);
-            sWrtr.WriteLine("//  Machine:  " + Environment.MachineName);
             sWrtr.WriteLine("//  DateTime: " + DateTime.Now.ToString());
-            sWrtr.WriteLine("//  UserName: " + Environment.UserName);
             ListDivider(sWrtr); sWrtr.WriteLine(); sWrtr.WriteLine();
             //
             //  Initialize the error group
