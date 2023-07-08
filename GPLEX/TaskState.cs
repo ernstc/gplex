@@ -59,6 +59,8 @@ namespace QUT.Gplex.Automaton
                     _versionWithPlatform = version + " [.Net 5]";
 #elif NET6_0
                     _versionWithPlatform = version + " [.Net 6]";
+#elif NET7_0
+                    _versionWithPlatform = version + " [.Net 7]";
 #endif
                 }
                 return _versionWithPlatform;
@@ -555,7 +557,7 @@ namespace QUT.Gplex.Automaton
         void Status(DateTime start)
         {
             msgWrtr.Write("GPLEX: input parsed, AST built");
-            msgWrtr.Write((Errors ? ", errors detected" : " without error"));
+            msgWrtr.Write((Errors ? ", errors detected" : " successfully"));
             msgWrtr.Write((Warnings ? "; warnings issued. " : ". "));
             msgWrtr.WriteLine(ElapsedTime(start));
         }
