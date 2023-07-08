@@ -801,7 +801,7 @@ namespace QUT.Gplex.Automaton
             if (myTask.Verbose)
             {
                 myTask.Msg.Write("GPLEX: DFSA built");
-                myTask.Msg.Write((myTask.Errors ? ", errors detected" : " without error"));
+                myTask.Msg.Write((myTask.Errors ? ", errors detected" : " successfully"));
                 myTask.Msg.Write((myTask.Warnings ? "; warning(s) issued. " : ". "));
                 myTask.Msg.WriteLine(TaskState.ElapsedTime(start));
             }

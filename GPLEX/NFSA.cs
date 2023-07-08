@@ -110,7 +110,7 @@ namespace QUT.Gplex.Automaton
             if (task.Verbose)
             {
                 Console.Write("GPLEX: NFSA built");
-                Console.Write((task.Errors ? ", errors detected" : " without error"));
+                Console.Write((task.Errors ? ", errors detected" : " successfully"));
                 Console.Write((task.Warnings ? "; warnings issued. " : ". "));
                 Console.WriteLine(TaskState.ElapsedTime(time0));
             }
