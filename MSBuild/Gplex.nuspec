@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
 	<metadata>
 		<id>YaccLexTools.Gplex</id>
-		<version>1.2.2.2</version>
+		<version>1.2.2.3</version>
 		<title>Gplex Tool</title>
 		<authors>Ernesto Cianciotta</authors>
 		<owners>ernstc</owners>
@@ -15,7 +15,6 @@
 		<repository type="git" url="https://github.com/ernstc/gplex" />
 		<dependencies>
 			<group targetFramework=".NETFramework2.0" />
-			<group targetFramework="netcoreapp2.2" />
 			<group targetFramework="netcoreapp3.1" />
 			<group targetFramework=".NETStandard2.0" />
 			<group targetFramework="net5.0" />
@@ -30,7 +29,6 @@
 		
 		<!-- Placeholders indicating host project compatibility. The tools can be used in any .NET Framework and .NET Standard projects -->
 		<file src="_._" target="lib/net20/" />
-		<file src="_._" target="lib/netcoreapp2.2/" />
 		<file src="_._" target="lib/netcoreapp3.1/" />
 		<file src="_._" target="lib/netstandard2.0/" />
 		<file src="_._" target="lib/net5.0/" />
@@ -39,7 +37,6 @@
 
 		<!-- Framework specific target that runs the real run target below on single target builds -->
 		<file src="build/YaccLexTools.Gplex.targets" target="build/net20/YaccLexTools.Gplex.targets" />
-		<file src="build/YaccLexTools.Gplex.targets" target="build/netcoreapp2.2/YaccLexTools.Gplex.targets" />
 		<file src="build/YaccLexTools.Gplex.targets" target="build/netcoreapp3.1/YaccLexTools.Gplex.targets" />
 		<file src="build/YaccLexTools.Gplex.targets" target="build/netstandard2.0/YaccLexTools.Gplex.targets" />
 		<file src="build/YaccLexTools.Gplex.targets" target="build/net5.0/YaccLexTools.Gplex.targets" />
@@ -54,14 +51,12 @@
 
 		<!-- The tool binaries. Note that the net20 binaries are included purely for distribution, they are not used by the build targets -->
 		<file src="$publishdir$\net20\**\*" target="tools/net20/" />
-		<file src="$publishdir$\netcoreapp2.2\**\*" target="tools/netcoreapp2.2/" />
 		<file src="$publishdir$\netcoreapp3.1\**\*" target="tools/netcoreapp3.1/" />
 		<file src="$publishdir$\net5.0\**\*" target="tools/net5.0/" />
 		<file src="$publishdir$\net6.0\**\*" target="tools/net6.0/" />
 		<file src="$publishdir$\net7.0\**\*" target="tools/net7.0/" />
 
 		<file src="..\GPLEXcopyright.rtf" target="tools/net20/" />
-		<file src="..\GPLEXcopyright.rtf" target="tools/netcoreapp2.2/" />
 		<file src="..\GPLEXcopyright.rtf" target="tools/netcoreapp3.1/" />
 		<file src="..\GPLEXcopyright.rtf" target="tools/net5.0/" />
 		<file src="..\GPLEXcopyright.rtf" target="tools/net6.0/" />
