@@ -25,6 +25,13 @@
 
         public abstract string GetString(int begin, int limit);
 
+#if NETSTANDARD2_0_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public virtual ReadOnlySpan<Char> GetSpan(int begin, int limit)
+        {
+            return GetString(begin, limit);
+        }
+#endif
+
         public static ScanBuff GetBuffer(string source)
         {
             return new StringBuffer(source);
@@ -94,6 +101,21 @@
             if (limit <= begin) return "";
             else return str.Substring(begin, limit - begin);
         }
+
+#if NETSTANDARD2_0_OR_GREATER || NETCOREAPP2_1_OR_GREATER
+        public override ReadOnlySpan<Char> GetSpan(int begin, int limit)
+        {
+            //  "limit" can be greater than sLen with the BABEL
+            //  option set.  Read returns a "virtual" EOL if
+            //  an attempt is made to read past the end of the
+            //  string buffer.  Without the guard any attempt 
+            //  to fetch yytext for a token that includes the 
+            //  EOL will throw an index exception.
+            if (limit > sLen) limit = sLen;
+            if (limit <= begin) return ReadOnlySpan<Char>.Empty;
+            else return str.AsSpan(begin, limit - begin);
+        }
+#endif
 
         public override int Pos
         {
