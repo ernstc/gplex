@@ -49,14 +49,14 @@ namespace QUT.Gplex.Automaton
             {
                 if (_versionWithPlatform == null)
                 {
-#if NET20_OR_GREATER
+#if NET462_OR_GREATER
                     _versionWithPlatform = version + " [.Net Framework]";
 #elif NET6_0
                     _versionWithPlatform = version + " [.Net 6]";
-#elif NET7_0
-                    _versionWithPlatform = version + " [.Net 7]";
 #elif NET8_0
                     _versionWithPlatform = version + " [.Net 8]";
+#elif NET9_0
+                    _versionWithPlatform = version + " [.Net 9]";
 #endif
                 }
                 return _versionWithPlatform;

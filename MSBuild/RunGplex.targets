@@ -1,15 +1,15 @@
 <Project>
-	<PropertyGroup Condition="'$(TargetFramework)' == 'net20' Or $(TargetFrameworks.Contains('net20')) Or $(TargetFrameworkVersion.Contains('v2.0')) Or '$(TargetFramework)' == 'net30' Or '$(TargetFramework)' == 'net35' Or $(TargetFrameworks.Contains('net3')) Or $(TargetFrameworkVersion.Contains('v3.')) Or $(TargetFramework.Contains('net4')) Or $(TargetFrameworks.Contains('net4')) Or $(TargetFrameworkVersion.Contains('v4.'))">
-		<_GplexTool>"$(MSBuildThisFileDirectory)net20/Gplex.exe"</_GplexTool>
+	<PropertyGroup Condition="$(TargetFramework.Contains('net4')) Or $(TargetFrameworks.Contains('net4')) Or $(TargetFrameworkVersion.Contains('v4.'))">
+		<_GplexTool>"$(MSBuildThisFileDirectory)net462/Gplex.exe"</_GplexTool>
 	</PropertyGroup>
 	<PropertyGroup Condition="$(TargetFramework.Contains('net6.0')) Or $(TargetFrameworks.Contains('net6.0'))">
 		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net6.0/Gplex.dll"</_GplexTool>
 	</PropertyGroup>
-	<PropertyGroup Condition="$(TargetFramework.Contains('net7.0')) Or $(TargetFrameworks.Contains('net7.0'))">
-		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net7.0/Gplex.dll"</_GplexTool>
-	</PropertyGroup>
 	<PropertyGroup Condition="$(TargetFramework.Contains('net8.0')) Or $(TargetFrameworks.Contains('net8.0'))">
 		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net8.0/Gplex.dll"</_GplexTool>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('net9.0')) Or $(TargetFrameworks.Contains('net9.0'))">
+		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net9.0/Gplex.dll"</_GplexTool>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(_GplexTool)' == ''">
 		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net8.0/Gplex.dll"</_GplexTool>

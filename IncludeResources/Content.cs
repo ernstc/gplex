@@ -1,5 +1,5 @@
 ﻿using System.IO;
-#if !NET20
+#if !NET462
 using System.Reflection;
 #endif
 
@@ -34,7 +34,7 @@ namespace QUT.Gplex.IncludeResources
 
         static string GetResourceString(string resourceName)
         {
-#if NET20
+#if NET462
             var assembly = typeof(Content).Assembly;
 #else
             var assembly = typeof(Content).GetTypeInfo().Assembly;
