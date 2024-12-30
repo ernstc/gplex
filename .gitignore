@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Generated files
+GPLEX/gplex.lst
+GPLEX/GplexBuffers.cs
+GPLEX/Parser.cs
+GPLEX/Scanner.cs
+
 # User-specific files
 *.suo
 *.user
