@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>net462;net6.0;net8.0;net9.0</TargetFrameworks>
+		<AssemblyName>Gplex</AssemblyName>
+		<RootNamespace>QUT.Gplex</RootNamespace>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<!-- Pack settings -->
+	<PropertyGroup>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<NuspecFile>MSBuild/Gplex.nuspec</NuspecFile>
+		<IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/publish/</IntermediatePackDir>
+		<PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
+		<NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
+	</PropertyGroup>
+
+	<!-- Executes /t:Publish for all target frameworks before packing -->
+	<Target Name="NugetCrossTarget" AfterTargets="Build" Condition="'$(TargetFrameworks)' != ''">
+		<ItemGroup>
+			<_TargetFramework Include="$(TargetFrameworks)" />
+		</ItemGroup>
+		<MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Publish" Properties="TargetFramework=%(_TargetFramework.Identity)" />
+	</Target>
+
+	<Target Name="NugetSingleTarget" AfterTargets="Build" Condition="'$(TargetFrameworks)' == ''">
+		<MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Publish" />
+	</Target>
+
+	<ItemGroup>
+		<Compile Remove="SpecFiles\LookaheadHelper.cs" />
+		<EmbeddedResource Include="SpecFiles\GplexBuffers.txt" />
+		<EmbeddedResource Include="SpecFiles\gplexx.frame" />
+		<EmbeddedResource Include="SpecFiles\ResourceHeader.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\LICENSE.md" />
+		<Content Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</Content>
+		<Content Include="Resources\Icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<LexFile Include="SpecFiles\gplex.lex">
+			<OutputFile>Scanner.cs</OutputFile>
+		</LexFile>
+		<YaccFile Include="SpecFiles\gplex.y">
+			<OutputFile>Parser.cs</OutputFile>
+			<Arguments>/gplex /nolines</Arguments>
+		</YaccFile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="YaccLexTools.Gplex" Version="1.2.2.4" PrivateAssets="All" />
+		<PackageReference Include="YaccLexTools.Gppg" Version="1.5.2.4" PrivateAssets="All" />
+	</ItemGroup>
+</Project>
