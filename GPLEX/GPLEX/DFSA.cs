@@ -1147,8 +1147,6 @@ namespace QUT.Gplex.Automaton
                                     sWrtr.WriteLine("#define NOFILES");
                                 if (myTask.Persist)
                                     sWrtr.WriteLine("#define PERSIST");
-                                if (!myTask.Unicode)
-                                    sWrtr.WriteLine("#define BYTEMODE");
                                 for (int i = 0; i < dfas.Length; i++)
                                     if (dfas[i] != null)
                                     {

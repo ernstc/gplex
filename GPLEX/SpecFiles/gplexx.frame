@@ -226,7 +226,6 @@ using System.Diagnostics.CodeAnalysis;
             code = buffer.Read();
             if (code > ScanBuff.EndOfFile)
             {
-#if (!BYTEMODE)
                 if (code >= 0xD800 && code <= 0xDBFF)
                 {
                     int next = buffer.Read();
@@ -235,7 +234,6 @@ using System.Diagnostics.CodeAnalysis;
                     else
                         code = (0x10000 + ((code & 0x3FF) << 10) + (next & 0x3FF));
                 }
-#endif
                 cCol++;
             }
         }
@@ -317,7 +315,6 @@ using System.Diagnostics.CodeAnalysis;
             GetCode();
         }
         
-#if !BYTEMODE
         // ================ TextBuffer Initialization ===================
 
         /// <summary>
@@ -335,7 +332,6 @@ using System.Diagnostics.CodeAnalysis;
             this.code = '\n'; // to initialize yyline, yycol and lineStart
             GetCode();
         }
-#endif // !BYTEMODE
 #endif // !NOFILES
         
         // ==============================================================
@@ -456,9 +452,6 @@ using System.Diagnostics.CodeAnalysis;
                 if (tokELin == tokLin)
                     return tokECol - tokCol;
                 else
-#if BYTEMODE
-                    return tokEPos - tokPos;
-#else
                 {
                     int ch;
                     int count = 0;
@@ -471,7 +464,6 @@ using System.Diagnostics.CodeAnalysis;
                     buffer.Pos = save;
                     return count;
                 }
-#endif // BYTEMODE
             }
         }
         
