@@ -839,8 +839,6 @@ namespace QUT.Gplex.Parser {
 
         internal RegExException( int errorNum, int stringIx, int count, string message ) { errNo = errorNum; index = stringIx; length = count; text = message; }
 
-        protected RegExException( SerializationInfo i, StreamingContext c ) : base( i, c ) { }
-
         internal RegExException AdjustIndex( int delta ) { this.index += delta; return this; }
 
         internal void ListError( ErrorHandler handler, LexSpan span ) {
