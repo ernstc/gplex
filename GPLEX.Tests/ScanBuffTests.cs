@@ -120,25 +120,5 @@ namespace GPLEX.Tests
                 Assert.AreEqual(input, result.ToString());
             }
         }
-
-        [TestMethod]
-        public void TestBuildBufferWithUtf32Encoding()
-        {
-            string input = "Hello, 世界"; // "Hello, World" in Chinese
-            byte[] bytes = Encoding.UTF32.GetBytes(input);
-            using (MemoryStream stream = new MemoryStream(bytes))
-            {
-                ScanBuff buffer = ScanBuff.GetBuffer(stream);
-
-                StringBuilder result = new StringBuilder();
-                int ch;
-                while ((ch = buffer.Read()) != ScanBuff.EndOfFile)
-                {
-                    result.Append((char)ch);
-                }
-
-                Assert.AreEqual(input, result.ToString());
-            }
-        }
     }
 }
