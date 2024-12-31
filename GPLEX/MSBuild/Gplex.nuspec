@@ -14,7 +14,7 @@
 		<tags>gplex gppg yacc lex tools parser syntax ast compile language grammar LALR c#</tags>
 		<repository type="git" url="https://github.com/ernstc/gplex" />
 		<dependencies>
-			<group targetFramework=".NETFramework4.5.2" />
+			<group targetFramework=".NETFramework4.6.2" />
 			<group targetFramework=".NETStandard2.0" />
 			<group targetFramework="net6.0" />
 			<group targetFramework="net8.0" />
