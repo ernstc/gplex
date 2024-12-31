@@ -33,3 +33,7 @@ using System.Resources;
 [assembly: AssemblyVersion("1.2.2")]
 [assembly: AssemblyFileVersion("1.2.2")]
 [assembly: NeutralResourcesLanguageAttribute("")]
+
+// Expose internals to the test project
+[assembly: InternalsVisibleTo("GPLEX.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
