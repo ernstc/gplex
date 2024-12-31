@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.0" PrivateAssets="All" />
-		<PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.0" PrivateAssets="All" />
+		<PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.1" PrivateAssets="All" />
+		<PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.1" PrivateAssets="All" />
 	</ItemGroup>
 </Project>
