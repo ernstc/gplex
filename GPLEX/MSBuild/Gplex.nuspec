@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
 	<metadata>
 		<id>YaccLexTools.Gplex</id>
-		<version>1.2.3.1</version>
+		<version>1.2.3.2</version>
 		<title>Gplex Tool</title>
 		<authors>Ernesto Cianciotta</authors>
 		<owners>ernstc</owners>
@@ -19,6 +19,7 @@
 			<group targetFramework="net6.0" />
 			<group targetFramework="net8.0" />
 			<group targetFramework="net9.0" />
+			<group targetFramework="net10.0" />
 		</dependencies>
 	</metadata>
 	<files>
@@ -32,6 +33,7 @@
 		<file src="_._" target="lib/net6.0/" />
 		<file src="_._" target="lib/net8.0/" />
 		<file src="_._" target="lib/net9.0/" />
+		<file src="_._" target="lib/net10.0/" />
 
 		<!-- Framework specific target that runs the real run target below on single target builds -->
 		<file src="build/YaccLexTools.Gplex.targets" target="build/net462/YaccLexTools.Gplex.targets" />
@@ -39,6 +41,7 @@
 		<file src="build/YaccLexTools.Gplex.targets" target="build/net6.0/YaccLexTools.Gplex.targets" />
 		<file src="build/YaccLexTools.Gplex.targets" target="build/net8.0/YaccLexTools.Gplex.targets" />
 		<file src="build/YaccLexTools.Gplex.targets" target="build/net9.0/YaccLexTools.Gplex.targets" />
+		<file src="build/YaccLexTools.Gplex.targets" target="build/net10.0/YaccLexTools.Gplex.targets" />
 
 		<!-- Outer build target that runs the real run target below once on cross targeting builds -->
 		<file src="buildCrossTargeting\YaccLexTools.Gplex.targets" target="buildCrossTargeting/YaccLexTools.Gplex.targets" />
@@ -51,10 +54,12 @@
 		<file src="$publishdir$\net6.0\**\*" target="tools/net6.0/" />
 		<file src="$publishdir$\net8.0\**\*" target="tools/net8.0/" />
 		<file src="$publishdir$\net9.0\**\*" target="tools/net9.0/" />
+		<file src="$publishdir$\net10.0\**\*" target="tools/net10.0/" />
 
 		<file src="..\GPLEXcopyright.rtf" target="tools/net462/" />
 		<file src="..\GPLEXcopyright.rtf" target="tools/net6.0/" />
 		<file src="..\GPLEXcopyright.rtf" target="tools/net8.0/" />
 		<file src="..\GPLEXcopyright.rtf" target="tools/net9.0/" />
+		<file src="..\GPLEXcopyright.rtf" target="tools/net10.0/" />
 	</files>
 </package>

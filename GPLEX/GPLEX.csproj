@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net462;net6.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>net462;net6.0;net8.0;net9.0;net10.0</TargetFrameworks>
 		<AssemblyName>Gplex</AssemblyName>
 		<RootNamespace>QUT.Gplex</RootNamespace>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.1" PrivateAssets="All" />
-		<PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.1" PrivateAssets="All" />
+		<PackageReference Include="YaccLexTools.Gplex" Version="1.2.3.2" PrivateAssets="All" />
+		<PackageReference Include="YaccLexTools.Gppg" Version="1.5.3.2" PrivateAssets="All" />
 	</ItemGroup>
 </Project>
