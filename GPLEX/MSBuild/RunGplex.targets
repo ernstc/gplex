@@ -11,6 +11,9 @@
 	<PropertyGroup Condition="$(TargetFramework.Contains('net9.0')) Or $(TargetFrameworks.Contains('net9.0'))">
 		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net9.0/Gplex.dll"</_GplexTool>
 	</PropertyGroup>
+	<PropertyGroup Condition="$(TargetFramework.Contains('net10.0')) Or $(TargetFrameworks.Contains('net10.0'))">
+		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net10.0/Gplex.dll"</_GplexTool>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(_GplexTool)' == ''">
 		<_GplexTool>dotnet "$(MSBuildThisFileDirectory)net8.0/Gplex.dll"</_GplexTool>
 	</PropertyGroup>
